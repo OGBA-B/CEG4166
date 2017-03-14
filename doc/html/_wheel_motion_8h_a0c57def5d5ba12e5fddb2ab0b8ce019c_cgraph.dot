@@ -1,0 +1,48 @@
+digraph "Motion"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="Motion",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="motion_init",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$motion_8c.html#ac9be894f7310341b63a2edbffb8c1564"];
+  Node2 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="tc_init",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$motion_8c.html#a8d12206f4cd9015696507368434d085d"];
+  Node3 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="tc_set_com",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$motion_8c.html#a9f32f315fc317b73745364bb8cb52eeb"];
+  Node3 -> Node5 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="tc_set_wgm",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$motion_8c.html#aa01b75872b4bf75e3716336faf262d8e"];
+  Node3 -> Node6 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="tc_set_prescaler",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$motion_8c.html#a164e3f5907dd956fea4b055a34f201be"];
+  Node2 -> Node7 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="enc_init",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$motion_8c.html#a34c811ef2bd0189074d7b6f7400b0405"];
+  Node7 -> Node8 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node8 [label="tc_init_ddr",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$motion_8c.html#a7f15fab5cfcd9e36ebba263ec9ae367f"];
+  Node1 -> Node9 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node9 [label="MoveForward",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_wheel_motion_8c.html#a0665da19033bf3d963d92b9b79e5229f"];
+  Node9 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node9 -> Node10 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node10 [label="motion_servo_start",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$motion_8c.html#aa2c96c678bd9bdcdc4b934cea7abfaa4"];
+  Node10 -> Node8 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node10 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node9 -> Node11 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node11 [label="motion_servo_set_pulse\l_width",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$motion_8c.html#a5afda449073815c408f11d7ce3c5ecbc"];
+  Node1 -> Node12 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node12 [label="MoveBackward",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_wheel_motion_8c.html#a6b4b83950bf4af79dba5581e93652374"];
+  Node12 -> Node10 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node12 -> Node11 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node1 -> Node13 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node13 [label="SpinClockwise",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_wheel_motion_8c.html#aa87e1eacc289d1ea160a8a06c4ef9622"];
+  Node13 -> Node10 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node13 -> Node11 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node1 -> Node14 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node14 [label="SpinCounterClockwise",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_wheel_motion_8c.html#a5ec3388a83ff65f0d7bc3114b05f731b"];
+  Node14 -> Node10 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node14 -> Node11 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node1 -> Node15 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node15 [label="StopRobot",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_wheel_motion_8c.html#ae0bb9f4ba2d9941cfbb5d9ddec6221d4"];
+  Node15 -> Node16 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node16 [label="motion_servo_stop",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$motion_8c.html#a299aca644308117ebfdb3d784943c035"];
+  Node16 -> Node8 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node16 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+}

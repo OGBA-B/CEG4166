@@ -1,0 +1,54 @@
+\section{thermal\+Sensor.\+c File Reference}
+\label{thermal_sensor_8c}\index{thermal\+Sensor.\+c@{thermal\+Sensor.\+c}}
+{\ttfamily \#include $<$stdlib.\+h$>$}\\*
+{\ttfamily \#include $<$stdbool.\+h$>$}\\*
+{\ttfamily \#include $<$string.\+h$>$}\\*
+{\ttfamily \#include $<$stdio.\+h$>$}\\*
+{\ttfamily \#include $<$avr/io.\+h$>$}\\*
+{\ttfamily \#include \char`\"{}Free\+R\+T\+O\+S.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}task.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}queue.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}semphr.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}i2c\+Multi\+Master.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}led\+Module.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}Serial\+L\+C\+D\+Module.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}usartserial.\+h\char`\"{}}\\*
+Include dependency graph for thermal\+Sensor.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void {\bf Read\+Temperature} ()
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+uint8\+\_\+t {\bf avg\+Temp} = 27
+\item 
+uint8\+\_\+t {\bf temps} [9]
+\item 
+uint8\+\_\+t {\bf pixel\+Temps} [3]
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\index{thermal\+Sensor.\+c@{thermal\+Sensor.\+c}!Read\+Temperature@{Read\+Temperature}}
+\index{Read\+Temperature@{Read\+Temperature}!thermal\+Sensor.\+c@{thermal\+Sensor.\+c}}
+\subsubsection[{Read\+Temperature()}]{\setlength{\rightskip}{0pt plus 5cm}void Read\+Temperature (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{thermal_sensor_8c_a186d5e47daffeef46d330f49b1934745}
+Reads temperatures, 1 ambient + 8 pixel temperatures, from thermal array sensor, finds the average of the 4 left and 4 right pixels. 
+
+\subsection{Variable Documentation}
+\index{thermal\+Sensor.\+c@{thermal\+Sensor.\+c}!avg\+Temp@{avg\+Temp}}
+\index{avg\+Temp@{avg\+Temp}!thermal\+Sensor.\+c@{thermal\+Sensor.\+c}}
+\subsubsection[{avg\+Temp}]{\setlength{\rightskip}{0pt plus 5cm}uint8\+\_\+t avg\+Temp = 27}\label{thermal_sensor_8c_ae2fc39671c0173304986f05dba26bbbf}
+Variable to hold the average of the ambient temperature \& the 8 pixels \index{thermal\+Sensor.\+c@{thermal\+Sensor.\+c}!pixel\+Temps@{pixel\+Temps}}
+\index{pixel\+Temps@{pixel\+Temps}!thermal\+Sensor.\+c@{thermal\+Sensor.\+c}}
+\subsubsection[{pixel\+Temps}]{\setlength{\rightskip}{0pt plus 5cm}uint8\+\_\+t pixel\+Temps[3]}\label{thermal_sensor_8c_a4e3d917ec36695a5c4b2aeb41f4d6875}
+Array to hold the ambient temperature and the average of the 4 right and left pixels. \index{thermal\+Sensor.\+c@{thermal\+Sensor.\+c}!temps@{temps}}
+\index{temps@{temps}!thermal\+Sensor.\+c@{thermal\+Sensor.\+c}}
+\subsubsection[{temps}]{\setlength{\rightskip}{0pt plus 5cm}uint8\+\_\+t temps[9]}\label{thermal_sensor_8c_a303bfbfba8466a335e14331344e03ed7}
+Array to hold the ambient \& 8 pixel temperatures 

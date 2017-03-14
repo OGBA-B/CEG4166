@@ -1,0 +1,41 @@
+\section{thermal\+Sensor.\+h File Reference}
+\label{thermal_sensor_8h}\index{thermal\+Sensor.\+h@{thermal\+Sensor.\+h}}
+This graph shows which files directly or indirectly include this file\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void {\bf Read\+Temperature} ()
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+uint8\+\_\+t {\bf avg\+Temp}
+\item 
+uint8\+\_\+t {\bf temps} [9]
+\item 
+uint8\+\_\+t {\bf pixel\+Temps} [3]
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\index{thermal\+Sensor.\+h@{thermal\+Sensor.\+h}!Read\+Temperature@{Read\+Temperature}}
+\index{Read\+Temperature@{Read\+Temperature}!thermal\+Sensor.\+h@{thermal\+Sensor.\+h}}
+\subsubsection[{Read\+Temperature()}]{\setlength{\rightskip}{0pt plus 5cm}void Read\+Temperature (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{thermal_sensor_8h_a186d5e47daffeef46d330f49b1934745}
+Reads temperatures, 1 ambient + 8 pixel temperatures, from thermal array sensor, finds the average of the 4 left and 4 right pixels. 
+
+\subsection{Variable Documentation}
+\index{thermal\+Sensor.\+h@{thermal\+Sensor.\+h}!avg\+Temp@{avg\+Temp}}
+\index{avg\+Temp@{avg\+Temp}!thermal\+Sensor.\+h@{thermal\+Sensor.\+h}}
+\subsubsection[{avg\+Temp}]{\setlength{\rightskip}{0pt plus 5cm}uint8\+\_\+t avg\+Temp}\label{thermal_sensor_8h_ae2fc39671c0173304986f05dba26bbbf}
+Variable to hold the average of the ambient temperature \& the 8 pixels \index{thermal\+Sensor.\+h@{thermal\+Sensor.\+h}!pixel\+Temps@{pixel\+Temps}}
+\index{pixel\+Temps@{pixel\+Temps}!thermal\+Sensor.\+h@{thermal\+Sensor.\+h}}
+\subsubsection[{pixel\+Temps}]{\setlength{\rightskip}{0pt plus 5cm}uint8\+\_\+t pixel\+Temps[3]}\label{thermal_sensor_8h_a4e3d917ec36695a5c4b2aeb41f4d6875}
+Array to hold the ambient temperature and the average of the 4 right and left pixels. \index{thermal\+Sensor.\+h@{thermal\+Sensor.\+h}!temps@{temps}}
+\index{temps@{temps}!thermal\+Sensor.\+h@{thermal\+Sensor.\+h}}
+\subsubsection[{temps}]{\setlength{\rightskip}{0pt plus 5cm}uint8\+\_\+t temps[9]}\label{thermal_sensor_8h_a303bfbfba8466a335e14331344e03ed7}
+Array to hold the ambient \& 8 pixel temperatures 

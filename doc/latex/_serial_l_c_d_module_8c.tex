@@ -1,0 +1,114 @@
+\section{Serial\+L\+C\+D\+Module.\+c File Reference}
+\label{_serial_l_c_d_module_8c}\index{Serial\+L\+C\+D\+Module.\+c@{Serial\+L\+C\+D\+Module.\+c}}
+{\ttfamily \#include \char`\"{}Serial\+L\+C\+D\+Module.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}thermal\+Sensor.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}Wheel\+Motion.\+h\char`\"{}}\\*
+Include dependency graph for Serial\+L\+C\+D\+Module.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void {\bf extended\+Command} (int8\+\_\+t command)
+\item 
+void {\bf lcd\+Text\+Write} (uint8\+\_\+t $\ast$display\+String, int row, int position)
+\item 
+void {\bf display\+Temperature} (uint8\+\_\+t {\bf temps}[9])
+\item 
+void {\bf display\+Dist\+Temp} ()
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+int {\bf this\+Usart\+ID} = U\+S\+A\+R\+T1\+\_\+\+ID
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\index{Serial\+L\+C\+D\+Module.\+c@{Serial\+L\+C\+D\+Module.\+c}!display\+Dist\+Temp@{display\+Dist\+Temp}}
+\index{display\+Dist\+Temp@{display\+Dist\+Temp}!Serial\+L\+C\+D\+Module.\+c@{Serial\+L\+C\+D\+Module.\+c}}
+\subsubsection[{display\+Dist\+Temp()}]{\setlength{\rightskip}{0pt plus 5cm}void display\+Dist\+Temp (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{_serial_l_c_d_module_8c_ad5f68ff585281a2c65a88aa1a6b4ab4d}
+\begin{DoxyAuthor}{Author}
+Daniel Hong 
+
+Saba Shaikh
+\end{DoxyAuthor}
+Displays the temperatures, speed and distance traveled to the L\+CD 
+
+Here is the call graph for this function\+:
+% FIG 1
+
+
+\index{Serial\+L\+C\+D\+Module.\+c@{Serial\+L\+C\+D\+Module.\+c}!display\+Temperature@{display\+Temperature}}
+\index{display\+Temperature@{display\+Temperature}!Serial\+L\+C\+D\+Module.\+c@{Serial\+L\+C\+D\+Module.\+c}}
+\subsubsection[{display\+Temperature(uint8\+\_\+t temps[9])}]{\setlength{\rightskip}{0pt plus 5cm}void display\+Temperature (
+\begin{DoxyParamCaption}
+\item[{uint8\+\_\+t}]{temps[9]}
+\end{DoxyParamCaption}
+)}\label{_serial_l_c_d_module_8c_a37e48baadc2b4aa993c676a6e5d29f05}
+\begin{DoxyAuthor}{Author}
+Daniel Hong 
+
+Saba Shaikh
+\end{DoxyAuthor}
+Clears the L\+CD and converts an array of integers to strings via sprintf() and repeatedly uses L\+C\+D\+Text\+Write() from this module to set the L\+CD to the desired cursor position and print to the L\+CD 
+\begin{DoxyParams}{Parameters}
+{\em temps} & an array of nine integers representing the eight pixel temperatures and the ambient temperature \\
+\hline
+\end{DoxyParams}
+
+
+Here is the call graph for this function\+:
+% FIG 2
+
+
+\index{Serial\+L\+C\+D\+Module.\+c@{Serial\+L\+C\+D\+Module.\+c}!extended\+Command@{extended\+Command}}
+\index{extended\+Command@{extended\+Command}!Serial\+L\+C\+D\+Module.\+c@{Serial\+L\+C\+D\+Module.\+c}}
+\subsubsection[{extended\+Command(int8\+\_\+t command)}]{\setlength{\rightskip}{0pt plus 5cm}void extended\+Command (
+\begin{DoxyParamCaption}
+\item[{int8\+\_\+t}]{command}
+\end{DoxyParamCaption}
+)}\label{_serial_l_c_d_module_8c_a5ec24d8f856d89706706c77fa1d0f043}
+\begin{DoxyAuthor}{Author}
+Daniel Hong 
+
+Saba Shaikh
+\end{DoxyAuthor}
+Uses write\+U\+S\+A\+R\+T() from the usart\+Serial.\+h module to send commands to the L\+CD 
+\begin{DoxyParams}{Parameters}
+{\em command} & command to send to the L\+CD. Automatically sends the 254 command indicator before sending the indicated command \\
+\hline
+\end{DoxyParams}
+\index{Serial\+L\+C\+D\+Module.\+c@{Serial\+L\+C\+D\+Module.\+c}!lcd\+Text\+Write@{lcd\+Text\+Write}}
+\index{lcd\+Text\+Write@{lcd\+Text\+Write}!Serial\+L\+C\+D\+Module.\+c@{Serial\+L\+C\+D\+Module.\+c}}
+\subsubsection[{lcd\+Text\+Write(uint8\+\_\+t $\ast$display\+String, int row, int position)}]{\setlength{\rightskip}{0pt plus 5cm}void lcd\+Text\+Write (
+\begin{DoxyParamCaption}
+\item[{uint8\+\_\+t $\ast$}]{display\+String, }
+\item[{int}]{row, }
+\item[{int}]{position}
+\end{DoxyParamCaption}
+)}\label{_serial_l_c_d_module_8c_a5d714a73044e33a94a92c024ef70ba31}
+Prints a string to a specified position and row 
+\begin{DoxyParams}{Parameters}
+{\em display\+String} & string to send to the L\+CD \\
+\hline
+{\em row} & row to print to, 0 or 1 \\
+\hline
+{\em position} & position to print to , 0-\/15 \\
+\hline
+\end{DoxyParams}
+
+
+Here is the call graph for this function\+:
+% FIG 3
+
+
+
+
+\subsection{Variable Documentation}
+\index{Serial\+L\+C\+D\+Module.\+c@{Serial\+L\+C\+D\+Module.\+c}!this\+Usart\+ID@{this\+Usart\+ID}}
+\index{this\+Usart\+ID@{this\+Usart\+ID}!Serial\+L\+C\+D\+Module.\+c@{Serial\+L\+C\+D\+Module.\+c}}
+\subsubsection[{this\+Usart\+ID}]{\setlength{\rightskip}{0pt plus 5cm}int this\+Usart\+ID = U\+S\+A\+R\+T1\+\_\+\+ID}\label{_serial_l_c_d_module_8c_a999d6e28f3a709a37f9336ba9ded2f6d}

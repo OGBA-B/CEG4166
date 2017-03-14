@@ -1,0 +1,15 @@
+digraph "SpinClockwise"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="SpinClockwise",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="motion_servo_start",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$motion_8c.html#aa2c96c678bd9bdcdc4b934cea7abfaa4"];
+  Node2 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="tc_init_ddr",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$motion_8c.html#a7f15fab5cfcd9e36ebba263ec9ae367f"];
+  Node2 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="tc_set_com",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$motion_8c.html#a9f32f315fc317b73745364bb8cb52eeb"];
+  Node1 -> Node5 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="motion_servo_set_pulse\l_width",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$motion_8c.html#a5afda449073815c408f11d7ce3c5ecbc"];
+}

@@ -1,0 +1,352 @@
+\begin{DoxyAuthor}{Authors}
+Daniel Hong 
+
+Saba Shaikh 
+
+Nnamdi Ibe 
+
+Ali El-\/\+Farou 
+
+Khalid Awil 
+
+Ogba Okparanyote 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+2016-\/03-\/12 
+\end{DoxyDate}
+\section{Introduction}\label{index_Introduction}
+\begin{DoxyParagraph}{}
+This document describes the system requirements for Sprint 2. The system design is divided into hardware and software design. Hardware design describes the hardware used in the current product including background information to help understand the design. The software design provides background information, overview information of other software components used in the current product (in particular free\+R\+T\+OS and its components),and a detailed design of the current product. Software design is modular and uses C software modules. ~\newline
+
+\end{DoxyParagraph}
+\subsection{1.\+1 Scope}\label{index_subsection_name_1_1}
+\begin{DoxyParagraph}{}
+This software product is identified as Chico\+: The Robot version 2.\+0.\+0. The expected functionalities and deliverables are\+:
+\begin{DoxyItemize}
+\item Setup and test the development environment, document background information about the Stingray robot and various components, the Arduino Mega 2560 card, and the Free\+R\+T\+OS operating system
+\item Create a second version of the Product Release Document that presents the product requirements and design of this release (this document)
+\item Complete the second release of the Chico\+: The Robot software, which will deliver functionalities listed in section 3 and is based on the software developed in version 1. The overall goal is to develop a vehicle cluster panel such as speedometer, odometer, and temperature meter. The focus is mainly on the motion of the robot and its sensors. The rest of the document covers the overall description of the product and expected functionalities. The next section describes detailed requirements and deliverables for Sprint 2. See the references section for a list of reference documents that describe the details on the hardware and software components. ~\newline
+ 
+\end{DoxyItemize}
+\end{DoxyParagraph}
+\section{2 Requirements}\label{index_section_name_2}
+\subsection{2.\+1 External Interfaces}\label{index_subsection_name_2_1}
+\begin{DoxyParagraph}{}
+Inputs of the realtime system\+:
+\begin{DoxyItemize}
+\item 9 temperature readings (8 pixel sensors, 1 ambient) read from thermal array sensor
+\item Speed of each wheel in terms of tick count between edge readings from the wheel encoders (photo reflector circuits) Outputs of the real time system\+:
+\end{DoxyItemize}
+\end{DoxyParagraph}
+
+\begin{DoxyItemize}
+\item Distance, speed and average temperature displayed on the L\+CD
+\item L\+ED light colors displaying the direction the system is currently moving in
+\item Pulse-\/width signals sent to control the wheel and sensor servomotors
+\end{DoxyItemize}\subsection{2.\+2 Software Requirements}\label{index_subsection_name_2_2}
+\begin{DoxyParagraph}{}
+This section provides detailed description of the functional requirements of Sprint 2. The requirements have been broken down into sections for each hardware and software component of the system. 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{}
+Scheduler
+\begin{DoxyItemize}
+\item The system shall use a cyclic scheduler scheme, implemented through a separate module containing the task calls of all the other modules
+\begin{DoxyItemize}
+\item This task will be the only task running in free\+R\+T\+O\+S’ default round robin + preemption system using free\+R\+T\+O\+S’ task creation method, thus emulating a cyclic scheduler
+\begin{DoxyItemize}
+\item x\+Task\+Create( pv\+Task\+Code, pc\+Name, us\+Stack\+Depth, pv\+Parameters, ux\+Priority, px\+Created\+Task )
+\end{DoxyItemize}
+\end{DoxyItemize}
+\item Task execution ordering is\+:
+\begin{DoxyItemize}
+\item Read temperature,
+\item Calculate speed
+\item Move center servo
+\item Move robot
+\item Display distance, speed and temperatures on L\+CD
+\item Change L\+CD color 
+\end{DoxyItemize}
+\end{DoxyItemize}
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{}
+Movement
+\begin{DoxyItemize}
+\item The system shall calculate the speed the robot is moving by utilizing the encoder modules attached to the wheel servo motors and the timer registers associated with the wheels
+\item The system shall continuously display the speed of the robot in cm/s on the L\+CD display
+\item The system shall continuously display the distance travelled in cm by the robot on the L\+CD display
+\item The system must maintain forward movement in a straight line at a constant speed
+\item The system must maintain backward movement in a straight line at a constant speed
+\item The system must be able to spin to the right at a constant speed.
+\item The system must be able to spin to the left at a constant speed.
+\item The system must emit a specific L\+ED light for each pre-\/defined direction the robot is moving in.
+\begin{DoxyItemize}
+\item The system shall emit a green L\+ED light when the robot is moving forward
+\item The system shall emit a red L\+ED light when the robot is moving backwards
+\item The system shall emit a blue L\+ED light when the robot is spinning in either direction
+\item The system shall emit a white L\+ED light when the robot is not moving 
+\end{DoxyItemize}
+\end{DoxyItemize}
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{}
+Temperature sensor
+\begin{DoxyItemize}
+\item The system shall read the surrounding ambient temperature using the thermal array sensor.
+\item The system shall read the 8 pixel temperatures using the thermal array sensor
+\item The system shall emit a red light if the temperature equals or exceeds 40 degrees celsius. 
+\end{DoxyItemize}
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{}
+L\+CD Screen
+\begin{DoxyItemize}
+\item The system shall display temperatures represented by at most two digits
+\item The system shall use the functions from usartserial.\+h as the bases of sending commands and writing to the L\+CD screen
+\item The system shall open the appropriate U\+S\+A\+RT serial port for output to the L\+CD
+\begin{DoxyItemize}
+\item The appropriate baud rate shall be set (9600)
+\item U\+S\+A\+R\+T1\+\_\+\+ID shall be the U\+S\+A\+RT serial port to open
+\item Queue lengths shall be set to constants port\+S\+E\+R\+I\+A\+L\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+TX and port\+S\+E\+R\+I\+A\+L\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+RX respectively
+\end{DoxyItemize}
+\item The system shall display \char`\"{}\+A\+M\+B\+T\+: \char`\"{}to indicate the digits that represent the surrounding ambient temperature.
+\item The system shall display \char`\"{}\+S\+P\+: \char`\"{}to indicate the digits that represent the system’s speed
+\item The system shall display \char`\"{}\+D\+T\+: \char`\"{}to indicate the digits that represent the distance travelled by the wheels
+\item The system shall display \char`\"{}\+L\+: \char`\"{}to indicate the digits that represent the average temperature of the left thermal pixels
+\item The system shall display \char`\"{}\+R\+: \char`\"{}to indicate the digits that represent the average temperature of the right thermal pixels
+\item The system shall display the surrounding ambient temperature on 1 line of the L\+CD screen
+\item Line 1 will display the average speed of the robot and the distance travelled (odometer function)
+\item Line 2 will display the ambient temperature, average temperature of the 4 right and left pixels
+\item The system shall clear the screen before each display update
+\item The system shall send command codes to the L\+CD to display on the appropriate lines
+\item The system shall display the temperature for 10 milliseconds before updating 
+\end{DoxyItemize}
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{}
+Wi\+Fi L\+E\+DS
+\begin{DoxyItemize}
+\item The system shall power on each L\+ED with a current of 0 volts
+\item The system shall power off each L\+ED with a current of 5 volts
+\item The system shall power on each L\+ED individually.
+\item The system shall power off each L\+ED individually
+\item The system shall allow each L\+ED to be viewed in viewing angles up to 140 degrees from the point of reference
+\item The system shall set the color of the led to Green, while moving forward.
+\item The system shall set the color of the led to Red, while moving backwards.
+\item The system shall set the color of the led to Blue, while spinning (right or left).
+\item The system shall set the color of the led to White, when not moving. 
+\end{DoxyItemize}
+\end{DoxyParagraph}
+\subsection{2.\+3 Other Requirements}\label{index_subsection_name_2_3}
+
+\begin{DoxyItemize}
+\item The release document will complement and extend the existing release document from sprint 1
+\end{DoxyItemize}
+
+The system is expected to\+:
+\begin{DoxyItemize}
+\item Move forwards and backwards
+\item Turn left and turn right
+\item Stop movement
+\item Display the correct L\+ED color for the movement state including the stop state
+\item Realign the center servo to the center when stopped
+\item Sweep the center servo back and forth while moving
+\item Display the correct speed, distance and temperatures on the L\+CD
+\end{DoxyItemize}
+
+Source code will be included alongside the document
+\begin{DoxyItemize}
+\item Source code will have been compiled and included 
+\end{DoxyItemize}\section{3 Overall Description}\label{index_section_name_3}
+The Stingray Wi\+Fi robot is equipped with various hardware components such as the Arduino Mega 2560 microcontroller, a Serial L\+CD, Wi-\/\+Fi, an Ultrasonic sonar sensor, servo motors, and a photo reflector circuit. This section provides some details of these components to help the user understand the environment. \subsection{3.\+1 Product Perspective}\label{index_subsection_name_3_1}
+\begin{DoxyParagraph}{}
+The Stingray Wi\+Fi robot currently mimics the functionality of a temperature monitor. This is achieved by using the existing hardware, including the Arduino Mega 2560 microcontroller, the Sparkfun H\+D44780U controller based serial 2x16 L\+CD, the Sandbox Hydrogen Wi\+Fi shield with built-\/in webserver, and the T\+P\+A81 Thermopile Array (Thermal Array Sensor) along with the Free\+R\+T\+OS software modules to manipulate these components. Refer to the references section for more details on each hardware component. 
+\end{DoxyParagraph}
+\subsection{3.\+2 Hardware Componenets}\label{index_subsection_name_3_2}
+\subsubsection{Stingray Wifi Robot}\label{index_subsubsection_name_3_2_1}
+\begin{DoxyParagraph}{}
+The Stingray Wifi Robot (figure 1) specific components include\+:
+\begin{DoxyItemize}
+\item 2 Futuba F\+P-\/\+S148 continuous rotation servo motors for differential steering
+\item Hamamatsu P5587 photo reflector circuit with wheel incremental encoders
+\item Parallax P\+I\+NG ultrasonic sensor on a rotating motor
+\item 8 pixel thermal array sensor
+\item (D\+IY Sandbox) Arduino Hydrogen Wi\+Fi with built in web server
+\item Serial 16x2 L\+CD
+\item Arduino Mega 2560 Microcontroller
+\item 2 Ni\+Cad 1700 m\+A/h batteries and AC adaptor  The Arduino Mega2560 (figure 2) is a microcontroller board based on the A\+Tmega2560. The A\+VR 2560-\/16\+AU installed on the Arduino Mega 2560 card is the 100 pin version which provides all parts shown in figure 3. It provides 256 Kbytes of flash memory, 4 Kbytes of E\+E\+P\+R\+OM, 8 Kbytes of R\+AM, 86 general purpose I/O pins, 12 16-\/bit resolution P\+WM channels, serial U\+S\+A\+R\+TS, and 16 A\+DC channels. Refer to the A\+VR 2560 Micro\+Controller/\+Arduino/\+Sting\+Ray Summary Documentation for more details on the port functions, mapping, and memory map.   The main hardware components used for Sprint 1 include the serial L\+CD module, 8 pixel thermal array sensor, and the Hydrogen Wi\+Fi L\+E\+Ds. ~\newline
+
+\end{DoxyItemize}
+\end{DoxyParagraph}
+\subsubsection{Stingray Robot Arduino Pinout}\label{index_subsubsection_name_3_2_2}
+This section lists the Arduino Mega pins and its associated hardware of the Stingray robot. See the references section for more details on each part.
+
+Wi-\/\+Fi Hydrogen Board
+
+
+\begin{DoxyItemize}
+\item Communication 6 -\/ T\+X2
+\item Communication 5 -\/\+R\+X2
+\item P\+WM 10 -\/ Sd Card Cs
+\item P\+WM 11 -\/ Sd card M\+O\+SI
+\item P\+WM 12 -\/ Sd Card M\+I\+SO
+\item P\+WM 13 -\/ Sd Card C\+LK
+\item P\+WM 3 -\/ Blue L\+ED
+\item P\+WM 5 -\/ Green L\+ED
+\item P\+WM 6 -\/ Red L\+ED
+\item Reset -\/ Reset
+\end{DoxyItemize}
+
+Servos
+\begin{DoxyItemize}
+\item P\+WM 4 -\/ right servo motor
+\item P\+WM 2 -\/ left Servo motor
+\item P\+WM 7 -\/ center servo motor
+\end{DoxyItemize}
+
+Sensors and Display
+\begin{DoxyItemize}
+\item Digital I/O 22 -\/ Sonar Input
+\item Digital I/O 26 -\/ Left Encoder input
+\item Digital I/O 28 -\/ Right Encoder Input
+\item Serial T\+X1 -\/ L\+CD Display
+\item S\+DA 20 -\/ I2C Bus
+\item S\+CL 21-\/ I2C Clock Bus ~\newline
+
+\end{DoxyItemize}\subsubsection{Serial L\+C\+D Module}\label{index_subsubsection_name_3_2_3}
+ \begin{DoxyParagraph}{}
+The 16\+X2 Liquid Crystal display (L\+CD), shown in figure 4, is used to display characters. A ser\+L\+CD v2.\+5 module is used to interface the L\+CD. The module takes incoming 9600bps T\+TL levels and displays the signals on the L\+CD. Only three wires(5\+V, G\+N\+D and Signal) are used to interface the L\+CD. 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{}
+Ser\+L\+CD Features
+\begin{DoxyItemize}
+\item Incoming buffer stores up to 80 characters
+\item All surface mount design allows a backpack that is half the size of the of the original
+\item Faster boot up time than previous versions
+\item User definable splash screen included
+\item Processing speeds at 8\+M\+HZ
+\item Boot up display can be turned either on or off via firmware
+\item Adjustable baud rates between 2400,4800,9600,14400,19200 and 38400
+\item Operational backspace
+\item Backlight supports pulse width modulation
+\item The backlight transistor can handle up to 1A
+\item New P\+IC 16\+F688 utilizes onboard U\+A\+RT for greater communication accuracy 
+\end{DoxyItemize}
+\end{DoxyParagraph}
+\subsubsection{Thermal Array Sensor}\label{index_subsubsection_name_3_2_4}
+ \begin{DoxyParagraph}{}
+The T\+P\+A81 (see figure 5) is a thermopile array detecting infra-\/red in the range of 2um-\/22um. This is the wavelength of radiant heat. It has an array of eight thermopiles arranged in a row. There are 9 temperature readings available, all in degrees centigrade (°C). Register 1 is the ambient temperature as measured within the sensor. The T\+P\+A81 has 10 registers. Register 0 is the command register, registers 2-\/9 are the 8 pixel temperatures. Temperature acquisition is continuously performed and the readings will be correct within approximately 40ms after the sensor points to a new position. 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Features}
+
+\begin{DoxyItemize}
+\item Can detect a candle flame from 6ft
+\item Unaffected by ambient light
+\item Simultaneously measures temperature of 8 adjacent points
+\item Can control a servo to pan the module and build a thermal image
+\item All communications are done via I2C.  
+\end{DoxyItemize}
+\end{DoxyParagraph}
+\subsubsection{Wi-\/\+Fi Hydrogen Shield}\label{index_subsubsection_name_3_2_5}
+The Hydrogen from D\+IY Sandbox (see figure 7) is a fully integrated Wi\+Fi Arduino shield. Hydrogen provides certified 802.\+11b Wi\+Fi connectivity along with an integrated micro\+SD card, true R\+GB P\+WM L\+E\+Ds, integrated 3.\+3V L\+DO, dual stackable connectors, and hardware/software U\+A\+RT with S\+PI chip select.  \begin{DoxyParagraph}{}
+Features
+\begin{DoxyItemize}
+\item 802.\+11b certified Wi\+Fi Module by Gain\+Span or integrated antenna
+\item 11 Mbps Wi\+Fi module (throughput limited by Arduino processor clock speed)
+\item Universal connectivity to adhoc and infrastructure networks
+\item U\+F.\+L connector for external antenna
+\item Switchable software or hardware U\+A\+RT connection o W\+E\+P64/128,W\+P\+A/\+W\+P\+A2
+\item Supports Wi\+Fi access point generation
+\item Supports up to 16 T\+CP or U\+DP connections
+\item Dynamic site scanning of nearby access points including R\+S\+SI information or D\+H\+CP \& D\+NS lookup
+\item Micro SD Card Holder
+\item Three Pulse Width Modulated (P\+WM) L\+E\+Ds
+\item Individual on/off pin and fully customizable power levels
+\item Red Blue and Green L\+E\+Ds for brilliant color combinations  
+\end{DoxyItemize}
+\end{DoxyParagraph}
+\subsubsection{Futuba F\+P-\/\+S148 Servomotors}\label{index_subsubsection_name_3_2_6}
+The servomotors are controlled by electrical impulses in a pulse width modulation signal (P\+WM) applied to them. To keep the servomotor operating, these impulses are repeated continuously by the A\+T\+Mega2560 microcontroller. The signal is periodic and is encoded in the pulse width (see figure 9).  To control the wheels of the robot, the pulse width applied to the servos determine the angular speed and direction of the wheels. \tabulinesep=1mm
+\begin{longtabu} spread 0pt [c]{*2{|X[-1]}|}
+\hline
+\rowcolor{\tableheadbgcolor}{\bf Pulse\+Width }&{\bf Effect  }\\\cline{1-2}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\rowcolor{\tableheadbgcolor}{\bf Pulse\+Width }&{\bf Effect  }\\\cline{1-2}
+\endhead
+1.\+25&Wheel does not move \\\cline{1-2}
+0.\+55&Maximum speed clockwise \\\cline{1-2}
+2.\+33&Maximum speed counterclockwise \\\cline{1-2}
+\end{longtabu}
+The central servo is used to position the thermal sensor on top of the robot. \tabulinesep=1mm
+\begin{longtabu} spread 0pt [c]{*2{|X[-1]}|}
+\hline
+\rowcolor{\tableheadbgcolor}{\bf Pulse\+Width }&{\bf Effect  }\\\cline{1-2}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\rowcolor{\tableheadbgcolor}{\bf Pulse\+Width }&{\bf Effect  }\\\cline{1-2}
+\endhead
+1.\+25&Center-\/ in front of the robot \\\cline{1-2}
+0.\+55&Maximum speed clockwise \\\cline{1-2}
+2.\+33&Maximum speed counterclockwise \\\cline{1-2}
+\end{longtabu}
+\subsubsection{Futuba F\+P-\/\+S148 Servomotors}\label{index_subsubsection_name_3_2_6}
+The optical encoders are used to determine the displacement and speed of the robot. Figure 10 shows how an infrared light illuminates the surface of the disk on a turning wheel. The phototransistor outputs logical 1 when the disk is illuminated and 0 when not. Because there are 64 regions (32 dark and 32 reflective) on the disk, there are 32 rising and 32 falling edges and time is measured between two rising edges.  \subsection{3.\+3 Product Functions}\label{index_subsection_name_3_3}
+The objective of the this sprint, was to develop a robot that can\+: read from the thermal array sensor; perform a set of motions using the servomotors and photo-\/sensor circuit; calculate and print the speed and distance covered and reflect the direction of motion on he L\+ED.
+
+This was accomplished by implementing a cyclic scheduler to schedule the different functions of the robot. The temperature is gotten from the thermal array sensor, by using the I2C Software Protocol to establish a communication between the microcontroller and the thermal array sensor. The microcontroller (acting as the master device), goes on to read the ambient temperature of the thermal sensor, as well as the surrounding 8 pixel temperatures. The ambient temperature and the average of the 4 left and 4 right pixels are then made available to the other modules.
+
+The wheels of the robot and the head mount are both controlled by the servomotor. The wheels are controlled by setting the pulse width which determines the direction and the angular speed of the wheel; while in the case of the head mount, the pulse width determines its positions.
+
+The speed and distance covered by the robot are both calculated using the number ticks between rising edges. The number of ticks is then converted to time by using the time elapsed between two clock ticks; the distance covered between two rising edges of the encoder is fixed. With the time elapsed and the distance, the speed of the robot is calculated.
+
+The L\+CD display is used to display the instantaneous speed of the robot, the total distance covered by the robot, the ambient temperature of the thermal sensor, and the average of the four left and right pixels.
+
+The Hydrogen Wi\+Fi shield L\+ED is used the indicate the direction of the robot. The color of the L\+ED is green when the robot is moving forwards, red while moving backwards, blue while spinning to the right or left and white when not moving.\subsection{3.\+3 Product Functions}\label{index_subsection_name_3_3}
+\begin{DoxyParagraph}{}
+The precision of the encoder on the stingray robot is limited. The encoder on the stingray is designed to have 64 transitions between the dark and light regions in every complete rotation. The time between the rising and falling edges of the encoder signal from wheel turning at a constant speed should not change; however because the L\+ED illumination is a beam and not a point, light is still reflected on the phototransistor until all of the beam is on the dark side. Therefore time is measured between two rising edges, instead of each transition from rising edge to falling edge, which reduces the precision since only 32 transitions are used in determining the wheel speed and distance travelled.
+\end{DoxyParagraph}
+\section{4 Software Design}\label{index_section_name_4}
+\subsection{4.\+1 Background Information}\label{index_subsection_name_4_1}
+
+
+To enable movement of the servomotors, the Wheel\+Motion module makes use of the motion module to set the pulse width of the respective servomotors. To enable reading from and writing to the thermal array sensor, the I2\+C\+Multi\+Master software module was used. This module allows I2C communication via the hardware module provided in the Atmega2560 controller; thereby enabling us to configure the Atmega controller as the master device and the thermal array sensor as the slave device.
+
+To print information to the L\+CD, the C\+E\+G4166\+\_\+\+R\+T\+S\+\_\+\+L\+IB U\+S\+A\+RT module was used, this module allowed us to open the usart port for output to the L\+CD; and thereby enabling us to print characters on the L\+CD screen. \subsection{4.\+2 Wheel\+Motion Software Module}\label{index_subsection_name_4_2}
+\begin{DoxyParagraph}{}
+The Wheel Motion module is responsible for controlling the two servomotors on each wheel of the robot, as well as the servomotor which the head mount of the robot is attached to. This is accomplished by using the motion modules \doxyref{motion\+\_\+servo\+\_\+set\+\_\+pulse\+\_\+width()}{p.}{motion_8c_a5afda449073815c408f11d7ce3c5ecbc} to set the pulse width of the motors; the pulse width of the wheel servomotors are then used to determine the direction and the angular speed of the wheels; while setting the pulse width of the head mount servomotor set the position which the head mount should be facing. The wheels of the servo motors are stopped using the \doxyref{motion\+\_\+servo\+\_\+stop()}{p.}{motion_8c_a299aca644308117ebfdb3d784943c035} function.
+\end{DoxyParagraph}
+This module is also responsible for calculating the speed and distance travelled by the robot. The distance travelled by the robot is gotten from the \doxyref{motion\+\_\+enc\+\_\+read()}{p.}{motion_8c_a783cb0180b4d2cd1979b20892e97a8e4} module, which determines if the wheel is currently moving, and then the distance between two rising edges of the encoder signal is added. The number of ticks between two rising edges of the encoder signal is also gotten from the \doxyref{motion\+\_\+enc\+\_\+read()}{p.}{motion_8c_a783cb0180b4d2cd1979b20892e97a8e4} function, which is then converted into time by multiplying it to the number of seconds between two ticks; so the speed of the robot is then calculated by dividing the distance by the time used to cover that distance. \subsection{4.\+3 Thermal Sensor Software Module}\label{index_subsection_name_4_3}
+\begin{DoxyParagraph}{}
+This module is responsible for reading information from the thermal array sensor. Communication between the atmega controller and the thermal sensor is done by using the functions provided by the I2\+C\+Multi\+Master module.
+\end{DoxyParagraph}
+Firstly, the start sequence is sent with the master address, using the I2\+C\+\_\+\+Master\+\_\+\+Initialise function. Then the address of the thermal sensor (the slave device), along with the address of the internal address to read from, are then sent using the I2\+C\+\_\+\+Master\+\_\+\+Start\+\_\+\+Transceiver\+\_\+\+With\+\_\+\+Data function. Afterwards, the read command is sent to the slave device with the I2\+C\+\_\+\+Master\+\_\+\+Start\+\_\+\+Transceiver\+\_\+\+With\+\_\+\+Data funciton, and then the I2\+C\+\_\+\+Master\+\_\+\+Get\+\_\+\+Data\+\_\+\+From\+\_\+\+Transceiver function is used to gather the data gotten the thermal sensor. \subsection{4.\+4 Serial\+L\+C\+D\+Module Software Module}\label{index_subsection_name_4_4}
+\begin{DoxyParagraph}{}
+This module is used to print characters to the screen. Therefore, this module is responsible for printing the ambient temperature, as well as the 8 pixel temperatures read from thermal array sensor.
+\end{DoxyParagraph}
+This module is used to print characters to the screen. Therefore, this module is responsible for printing the ambient temperature, left temperature, right temperature, speed, distance travelled.
+
+The screen is first cleared, then using the usart\+Write function, the cursor is positioned to the correct position to print to. Following this, the respective indicator tag and value is printed, moving the cursor each time to allow spacing between each piece of information to be displayed on the L\+CD. After printing, a delay of 10 milliseconds is used to allow the system enough time to switch tasks as well as finish printing. This value was determined to be effective after various amounts of experimentation with timings. \subsection{4.\+5 L\+E\+D Software Module}\label{index_subsection_name_4_5}
+\begin{DoxyParagraph}{}
+This module is used to change the color of the L\+ED, depending on the average temperature from the thermal sensor. Firstly, the pins assigned to the L\+ED colors are set to output at 5V. Afterwards, the L\+ED colors are set according to the direction the robot is travelling in using the avr/io modules 
+\end{DoxyParagraph}
+\subsection{4.\+6 Software System Attributes}\label{index_subsection_name_4_6}
+\begin{DoxyParagraph}{}
+The system exhibits a high level of modularity by ensuring that like elements are grouped together logically and interdependencies between modules are kept at a minimum. We were able to achieve this by ensuring that all modules contained variables and methods that performed specific tasks such as grouping wheel motion functions in the Wheel\+Motion class and L\+ED and L\+CD related functions in the led\+Module and Serial\+L\+C\+D\+Module classes respectively. All of these modules would interact with a separate Scheduler module that handled the cyclic scheduling of the separate tasks to be performed by the robot.  Shown above is a diagram depicting the interdependencies between the modules present in the system; one can notice that there aren’t any two-\/way dependencies present, proving that the coupling between the modules is in fact low. This fact, along with the specific nature of each of the system’s modules in terms of function, demonstrate that our system is modular. 
+\end{DoxyParagraph}
+\section{5 References}\label{index_section_name_5}
+\begin{DoxyParagraph}{}
+G. Arbez, “\+Sting\+Ray Wi\+Fi Robot Documentation C\+S\+I4166/\+C\+S\+I4141,” rep., 2015. 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{}
+G. Arbez, “\+A\+VR 2560 Micro\+Controller/\+Arduino/\+Sting\+Ray Summary Documentation C\+E\+G4166/\+C\+S\+I4141,” rep., 2015. 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{}
+S., “\+Sparkfun Electronics Ser\+L\+CD v2.\+5 Serial Enabled L\+CD,” 2006. 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{}
+“\+T\+P\+A81 Infra Red Thermal Sensor,” T\+P\+A81 Infra Red Thermal Sensor. [Online]. Available at\+: {\tt http\+://www.\+robot-\/electronics.\+co.\+uk/htm/tpa81tech.\+htm}. [Accessed\+: Feb-\/2016].
+\end{DoxyParagraph}
+
+
+ 

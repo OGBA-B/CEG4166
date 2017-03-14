@@ -1,0 +1,13 @@
+digraph "tc_init"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="tc_init",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="tc_set_com",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$motion_8c.html#a9f32f315fc317b73745364bb8cb52eeb"];
+  Node1 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="tc_set_wgm",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$motion_8c.html#aa01b75872b4bf75e3716336faf262d8e"];
+  Node1 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="tc_set_prescaler",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$motion_8c.html#a164e3f5907dd956fea4b055a34f201be"];
+}

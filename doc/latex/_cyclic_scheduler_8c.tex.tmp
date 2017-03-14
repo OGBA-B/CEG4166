@@ -1,0 +1,73 @@
+\section{Cyclic\+Scheduler.\+c File Reference}
+\label{_cyclic_scheduler_8c}\index{Cyclic\+Scheduler.\+c@{Cyclic\+Scheduler.\+c}}
+{\ttfamily \#include \char`\"{}Serial\+L\+C\+D\+Module.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}Wheel\+Motion.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}thermal\+Sensor.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}led\+Module.\+h\char`\"{}}\\*
+Include dependency graph for Cyclic\+Scheduler.\+c\+:
+% FIG 0
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bf N\+U\+M\+\_\+\+M\+I\+N\+O\+R\+\_\+\+C\+Y\+C\+L\+ES}~6
+\item 
+\#define {\bf M\+I\+N\+O\+R\+\_\+\+C\+Y\+C\+L\+E\+\_\+\+T\+I\+ME}~1
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef void($\ast$ {\bf T\+A\+SK}) (void)
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void {\bf Scheduler} ()
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+{\bf T\+A\+SK} {\bf table} [{\bf N\+U\+M\+\_\+\+M\+I\+N\+O\+R\+\_\+\+C\+Y\+C\+L\+ES}]
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\index{Cyclic\+Scheduler.\+c@{Cyclic\+Scheduler.\+c}!M\+I\+N\+O\+R\+\_\+\+C\+Y\+C\+L\+E\+\_\+\+T\+I\+ME@{M\+I\+N\+O\+R\+\_\+\+C\+Y\+C\+L\+E\+\_\+\+T\+I\+ME}}
+\index{M\+I\+N\+O\+R\+\_\+\+C\+Y\+C\+L\+E\+\_\+\+T\+I\+ME@{M\+I\+N\+O\+R\+\_\+\+C\+Y\+C\+L\+E\+\_\+\+T\+I\+ME}!Cyclic\+Scheduler.\+c@{Cyclic\+Scheduler.\+c}}
+\subsubsection[{M\+I\+N\+O\+R\+\_\+\+C\+Y\+C\+L\+E\+\_\+\+T\+I\+ME}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\+I\+N\+O\+R\+\_\+\+C\+Y\+C\+L\+E\+\_\+\+T\+I\+ME~1}\label{_cyclic_scheduler_8c_a81186d7043ecb47005bb826835ed423c}
+The minor cycle time (frame size) for each task. \index{Cyclic\+Scheduler.\+c@{Cyclic\+Scheduler.\+c}!N\+U\+M\+\_\+\+M\+I\+N\+O\+R\+\_\+\+C\+Y\+C\+L\+ES@{N\+U\+M\+\_\+\+M\+I\+N\+O\+R\+\_\+\+C\+Y\+C\+L\+ES}}
+\index{N\+U\+M\+\_\+\+M\+I\+N\+O\+R\+\_\+\+C\+Y\+C\+L\+ES@{N\+U\+M\+\_\+\+M\+I\+N\+O\+R\+\_\+\+C\+Y\+C\+L\+ES}!Cyclic\+Scheduler.\+c@{Cyclic\+Scheduler.\+c}}
+\subsubsection[{N\+U\+M\+\_\+\+M\+I\+N\+O\+R\+\_\+\+C\+Y\+C\+L\+ES}]{\setlength{\rightskip}{0pt plus 5cm}\#define N\+U\+M\+\_\+\+M\+I\+N\+O\+R\+\_\+\+C\+Y\+C\+L\+ES~6}\label{_cyclic_scheduler_8c_a92c36292f553367d77f4528586288992}
+The number of tasks to be executed 
+
+\subsection{Typedef Documentation}
+\index{Cyclic\+Scheduler.\+c@{Cyclic\+Scheduler.\+c}!T\+A\+SK@{T\+A\+SK}}
+\index{T\+A\+SK@{T\+A\+SK}!Cyclic\+Scheduler.\+c@{Cyclic\+Scheduler.\+c}}
+\subsubsection[{T\+A\+SK}]{\setlength{\rightskip}{0pt plus 5cm}typedef void($\ast$ T\+A\+SK) (void)}\label{_cyclic_scheduler_8c_a4c891be51811a06d993bfb19a8fd37e7}
+
+
+\subsection{Function Documentation}
+\index{Cyclic\+Scheduler.\+c@{Cyclic\+Scheduler.\+c}!Scheduler@{Scheduler}}
+\index{Scheduler@{Scheduler}!Cyclic\+Scheduler.\+c@{Cyclic\+Scheduler.\+c}}
+\subsubsection[{Scheduler()}]{\setlength{\rightskip}{0pt plus 5cm}void Scheduler (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\label{_cyclic_scheduler_8c_a42874db29b25d1aa2021f10032254e61}
+A cyclic scheduler that schedules the tasks to be executed. 
+
+\subsection{Variable Documentation}
+\index{Cyclic\+Scheduler.\+c@{Cyclic\+Scheduler.\+c}!table@{table}}
+\index{table@{table}!Cyclic\+Scheduler.\+c@{Cyclic\+Scheduler.\+c}}
+\subsubsection[{table}]{\setlength{\rightskip}{0pt plus 5cm}{\bf T\+A\+SK} table[{\bf N\+U\+M\+\_\+\+M\+I\+N\+O\+R\+\_\+\+C\+Y\+C\+L\+ES}]}\label{_cyclic_scheduler_8c_a8b02ef243980c7cc30e1b1a94341da5e}
+{\bfseries Initial value\+:}
+\begin{DoxyCode}
+= \{
+        ReadTemperature,
+        Motion,
+        Speed,
+        MoveMount,
+        displayDistTemp,
+        changeLEDColour
+        \}
+\end{DoxyCode}
+The tasks to be executed. 

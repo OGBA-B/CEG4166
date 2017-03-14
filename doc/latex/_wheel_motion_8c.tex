@@ -1,0 +1,204 @@
+\section{Wheel\+Motion.\+c File Reference}
+\label{_wheel_motion_8c}\index{Wheel\+Motion.\+c@{Wheel\+Motion.\+c}}
+{\ttfamily \#include \char`\"{}motion.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}Wheel\+Motion.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}Free\+R\+T\+O\+S.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}task.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}queue.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}usartserial.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}Serial\+L\+C\+D\+Module.\+h\char`\"{}}\\*
+{\ttfamily \#include $<$stdio.\+h$>$}\\*
+Include dependency graph for Wheel\+Motion.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void {\bf Move\+Forward} ()
+\item 
+void {\bf Move\+Mount} (void)
+\item 
+void {\bf Motion} (void)
+\item 
+void {\bf Speed} ()
+\item 
+void {\bf Spin\+Clockwise} ()
+\item 
+void {\bf Spin\+Counter\+Clockwise} ()
+\item 
+void {\bf Move\+Backward} ()
+\item 
+void {\bf Stop\+Robot} ()
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+int {\bf pos} = {\bf I\+N\+I\+T\+I\+A\+L\+\_\+\+P\+U\+L\+S\+E\+\_\+\+W\+I\+D\+T\+H\+\_\+\+T\+I\+C\+KS}
+\item 
+bool {\bf flag1} = false
+\item 
+int {\bf direction} = 0
+\item 
+int {\bf direction\+Count} = 0
+\item 
+uint32\+\_\+t {\bf tick\+Count\+Right} [1]
+\item 
+uint32\+\_\+t {\bf tick\+Count\+Left} [1]
+\item 
+double {\bf left\+Wheel\+Speed} = 0
+\item 
+double {\bf right\+Wheel\+Speed} = 0
+\item 
+double {\bf right\+Wheel\+Distance} = 0
+\item 
+double {\bf left\+Wheel\+Distance} = 0
+\item 
+double {\bf speed} = 0
+\item 
+double {\bf distance} = 0
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\index{Wheel\+Motion.\+c@{Wheel\+Motion.\+c}!Motion@{Motion}}
+\index{Motion@{Motion}!Wheel\+Motion.\+c@{Wheel\+Motion.\+c}}
+\subsubsection[{Motion(void)}]{\setlength{\rightskip}{0pt plus 5cm}void Motion (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\label{_wheel_motion_8c_a0c57def5d5ba12e5fddb2ab0b8ce019c}
+direction 0\+: Moving forward; 1\+: Moving Backwards; 2\+: Spin\+Clockwise; 3\+: Spin\+Counter\+Clock\+Wise; 4\+: Stopped; 
+
+Here is the call graph for this function\+:
+% FIG 1
+
+
+\index{Wheel\+Motion.\+c@{Wheel\+Motion.\+c}!Move\+Backward@{Move\+Backward}}
+\index{Move\+Backward@{Move\+Backward}!Wheel\+Motion.\+c@{Wheel\+Motion.\+c}}
+\subsubsection[{Move\+Backward()}]{\setlength{\rightskip}{0pt plus 5cm}void Move\+Backward (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\label{_wheel_motion_8c_a6b4b83950bf4af79dba5581e93652374}
+Moves the robot backwards. 
+
+Here is the call graph for this function\+:
+% FIG 2
+
+
+\index{Wheel\+Motion.\+c@{Wheel\+Motion.\+c}!Move\+Forward@{Move\+Forward}}
+\index{Move\+Forward@{Move\+Forward}!Wheel\+Motion.\+c@{Wheel\+Motion.\+c}}
+\subsubsection[{Move\+Forward()}]{\setlength{\rightskip}{0pt plus 5cm}void Move\+Forward (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\label{_wheel_motion_8c_a0665da19033bf3d963d92b9b79e5229f}
+Moves the robot forward 
+
+Here is the call graph for this function\+:
+% FIG 3
+
+
+\index{Wheel\+Motion.\+c@{Wheel\+Motion.\+c}!Move\+Mount@{Move\+Mount}}
+\index{Move\+Mount@{Move\+Mount}!Wheel\+Motion.\+c@{Wheel\+Motion.\+c}}
+\subsubsection[{Move\+Mount(void)}]{\setlength{\rightskip}{0pt plus 5cm}void Move\+Mount (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\label{_wheel_motion_8c_a8f424bf36ec3b1ced83e6ff81e97a854}
+Moves the head mount of the robot to one end and then back to the other end. 
+
+Here is the call graph for this function\+:
+% FIG 4
+
+
+\index{Wheel\+Motion.\+c@{Wheel\+Motion.\+c}!Speed@{Speed}}
+\index{Speed@{Speed}!Wheel\+Motion.\+c@{Wheel\+Motion.\+c}}
+\subsubsection[{Speed()}]{\setlength{\rightskip}{0pt plus 5cm}void Speed (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\label{_wheel_motion_8c_aa67fabe448b84aa9864c42967ca4911a}
+Calculates the speed the robot is moving in. Calcsulates the distance covered by the robot. 
+
+Here is the call graph for this function\+:
+% FIG 5
+
+
+\index{Wheel\+Motion.\+c@{Wheel\+Motion.\+c}!Spin\+Clockwise@{Spin\+Clockwise}}
+\index{Spin\+Clockwise@{Spin\+Clockwise}!Wheel\+Motion.\+c@{Wheel\+Motion.\+c}}
+\subsubsection[{Spin\+Clockwise()}]{\setlength{\rightskip}{0pt plus 5cm}void Spin\+Clockwise (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\label{_wheel_motion_8c_aa87e1eacc289d1ea160a8a06c4ef9622}
+Spins the robot to the right. 
+
+Here is the call graph for this function\+:
+% FIG 6
+
+
+\index{Wheel\+Motion.\+c@{Wheel\+Motion.\+c}!Spin\+Counter\+Clockwise@{Spin\+Counter\+Clockwise}}
+\index{Spin\+Counter\+Clockwise@{Spin\+Counter\+Clockwise}!Wheel\+Motion.\+c@{Wheel\+Motion.\+c}}
+\subsubsection[{Spin\+Counter\+Clockwise()}]{\setlength{\rightskip}{0pt plus 5cm}void Spin\+Counter\+Clockwise (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\label{_wheel_motion_8c_a5ec3388a83ff65f0d7bc3114b05f731b}
+Spins the robot to the left 
+
+Here is the call graph for this function\+:
+% FIG 7
+
+
+\index{Wheel\+Motion.\+c@{Wheel\+Motion.\+c}!Stop\+Robot@{Stop\+Robot}}
+\index{Stop\+Robot@{Stop\+Robot}!Wheel\+Motion.\+c@{Wheel\+Motion.\+c}}
+\subsubsection[{Stop\+Robot()}]{\setlength{\rightskip}{0pt plus 5cm}void Stop\+Robot (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\label{_wheel_motion_8c_ae0bb9f4ba2d9941cfbb5d9ddec6221d4}
+Stops the robot 
+
+Here is the call graph for this function\+:
+% FIG 8
+
+
+
+
+\subsection{Variable Documentation}
+\index{Wheel\+Motion.\+c@{Wheel\+Motion.\+c}!direction@{direction}}
+\index{direction@{direction}!Wheel\+Motion.\+c@{Wheel\+Motion.\+c}}
+\subsubsection[{direction}]{\setlength{\rightskip}{0pt plus 5cm}int direction = 0}\label{_wheel_motion_8c_a886d551d5381dc3e53f17825ffc51641}
+direction 0\+: Moving forward; 1\+: Moving Backwards; 2\+: Spin\+Clockwise; 3\+: Spin\+Counter\+Clock\+Wise; 4\+: Stopped; \index{Wheel\+Motion.\+c@{Wheel\+Motion.\+c}!direction\+Count@{direction\+Count}}
+\index{direction\+Count@{direction\+Count}!Wheel\+Motion.\+c@{Wheel\+Motion.\+c}}
+\subsubsection[{direction\+Count}]{\setlength{\rightskip}{0pt plus 5cm}int direction\+Count = 0}\label{_wheel_motion_8c_aaac492771c00ab7135dc7a9c722c163e}
+\index{Wheel\+Motion.\+c@{Wheel\+Motion.\+c}!distance@{distance}}
+\index{distance@{distance}!Wheel\+Motion.\+c@{Wheel\+Motion.\+c}}
+\subsubsection[{distance}]{\setlength{\rightskip}{0pt plus 5cm}double distance = 0}\label{_wheel_motion_8c_a79b8e036dca6911e3295a47d99f21f43}
+The distance covered by the robot \index{Wheel\+Motion.\+c@{Wheel\+Motion.\+c}!flag1@{flag1}}
+\index{flag1@{flag1}!Wheel\+Motion.\+c@{Wheel\+Motion.\+c}}
+\subsubsection[{flag1}]{\setlength{\rightskip}{0pt plus 5cm}bool flag1 = false}\label{_wheel_motion_8c_a9a1dbc69d361c13c62a4a843f696ee5a}
+\index{Wheel\+Motion.\+c@{Wheel\+Motion.\+c}!left\+Wheel\+Distance@{left\+Wheel\+Distance}}
+\index{left\+Wheel\+Distance@{left\+Wheel\+Distance}!Wheel\+Motion.\+c@{Wheel\+Motion.\+c}}
+\subsubsection[{left\+Wheel\+Distance}]{\setlength{\rightskip}{0pt plus 5cm}double left\+Wheel\+Distance = 0}\label{_wheel_motion_8c_aec498e2d06e04385b2c4afb102f9a1aa}
+\index{Wheel\+Motion.\+c@{Wheel\+Motion.\+c}!left\+Wheel\+Speed@{left\+Wheel\+Speed}}
+\index{left\+Wheel\+Speed@{left\+Wheel\+Speed}!Wheel\+Motion.\+c@{Wheel\+Motion.\+c}}
+\subsubsection[{left\+Wheel\+Speed}]{\setlength{\rightskip}{0pt plus 5cm}double left\+Wheel\+Speed = 0}\label{_wheel_motion_8c_af77b76d4789de1ed6b05058812803e45}
+\index{Wheel\+Motion.\+c@{Wheel\+Motion.\+c}!pos@{pos}}
+\index{pos@{pos}!Wheel\+Motion.\+c@{Wheel\+Motion.\+c}}
+\subsubsection[{pos}]{\setlength{\rightskip}{0pt plus 5cm}int pos = {\bf I\+N\+I\+T\+I\+A\+L\+\_\+\+P\+U\+L\+S\+E\+\_\+\+W\+I\+D\+T\+H\+\_\+\+T\+I\+C\+KS}}\label{_wheel_motion_8c_a1910d262855b71da353ed0d07a6c7823}
+\index{Wheel\+Motion.\+c@{Wheel\+Motion.\+c}!right\+Wheel\+Distance@{right\+Wheel\+Distance}}
+\index{right\+Wheel\+Distance@{right\+Wheel\+Distance}!Wheel\+Motion.\+c@{Wheel\+Motion.\+c}}
+\subsubsection[{right\+Wheel\+Distance}]{\setlength{\rightskip}{0pt plus 5cm}double right\+Wheel\+Distance = 0}\label{_wheel_motion_8c_abc88ff56e6561a745b4e8199a4719419}
+\index{Wheel\+Motion.\+c@{Wheel\+Motion.\+c}!right\+Wheel\+Speed@{right\+Wheel\+Speed}}
+\index{right\+Wheel\+Speed@{right\+Wheel\+Speed}!Wheel\+Motion.\+c@{Wheel\+Motion.\+c}}
+\subsubsection[{right\+Wheel\+Speed}]{\setlength{\rightskip}{0pt plus 5cm}double right\+Wheel\+Speed = 0}\label{_wheel_motion_8c_ac4655dde3cb774687252f664ca6def11}
+\index{Wheel\+Motion.\+c@{Wheel\+Motion.\+c}!speed@{speed}}
+\index{speed@{speed}!Wheel\+Motion.\+c@{Wheel\+Motion.\+c}}
+\subsubsection[{speed}]{\setlength{\rightskip}{0pt plus 5cm}double speed = 0}\label{_wheel_motion_8c_a6dc6e6f3c75c509ce943163afb5dade7}
+The current speed of the robot \index{Wheel\+Motion.\+c@{Wheel\+Motion.\+c}!tick\+Count\+Left@{tick\+Count\+Left}}
+\index{tick\+Count\+Left@{tick\+Count\+Left}!Wheel\+Motion.\+c@{Wheel\+Motion.\+c}}
+\subsubsection[{tick\+Count\+Left}]{\setlength{\rightskip}{0pt plus 5cm}uint32\+\_\+t tick\+Count\+Left[1]}\label{_wheel_motion_8c_aee25763d9e12a9e7e6f43590d3a864df}
+\index{Wheel\+Motion.\+c@{Wheel\+Motion.\+c}!tick\+Count\+Right@{tick\+Count\+Right}}
+\index{tick\+Count\+Right@{tick\+Count\+Right}!Wheel\+Motion.\+c@{Wheel\+Motion.\+c}}
+\subsubsection[{tick\+Count\+Right}]{\setlength{\rightskip}{0pt plus 5cm}uint32\+\_\+t tick\+Count\+Right[1]}\label{_wheel_motion_8c_a27b12a8a820b48a28ffe774ec0168702}

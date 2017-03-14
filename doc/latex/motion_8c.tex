@@ -1,0 +1,421 @@
+\section{motion.\+c File Reference}
+\label{motion_8c}\index{motion.\+c@{motion.\+c}}
+{\ttfamily \#include $<$avr/io.\+h$>$}\\*
+{\ttfamily \#include $<$avr/interrupt.\+h$>$}\\*
+{\ttfamily \#include \char`\"{}motion.\+h\char`\"{}}\\*
+Include dependency graph for motion.\+c\+:
+% FIG 0
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct {\bf tc\+\_\+module\+\_\+registers}
+\item 
+struct {\bf encoder\+\_\+config\+\_\+t}
+\item 
+struct {\bf motor\+\_\+registers\+\_\+s}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bf E\+N\+C\+\_\+\+N\+U\+M\+B\+E\+R\+\_\+\+O\+F\+\_\+\+E\+N\+C\+O\+D\+E\+RS}~2
+\item 
+\#define {\bf T\+I\+F\+R\+\_\+\+I\+C\+F\+\_\+\+M\+A\+SK}~((uint8\+\_\+t) 0b00100000)
+\item 
+\#define {\bf T\+C\+\_\+\+M\+O\+D\+U\+L\+E\+\_\+4}~0
+\item 
+\#define {\bf T\+C\+\_\+\+M\+O\+D\+U\+L\+E\+\_\+5}~1
+\item 
+\#define {\bf T\+C\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+A}~0
+\item 
+\#define {\bf T\+C\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+B}~1
+\item 
+\#define {\bf T\+C\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+C}~2
+\item 
+\#define {\bf T\+C\+\_\+\+O\+C\+M\+\_\+\+N\+O\+N\+\_\+\+I\+N\+V\+E\+R\+T\+ED}~((uint8\+\_\+t) 2)
+\item 
+\#define {\bf T\+C\+\_\+20\+\_\+\+M\+S\+\_\+\+P\+E\+R\+I\+O\+D\+\_\+\+A\+T\+\_\+\+P\+S\+\_\+8}~((uint16\+\_\+t) 39999)
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void {\bf enc\+\_\+init} (int device\+Id)
+\item 
+static void {\bf tc\+\_\+init} (int tc\+Module)
+\item 
+static void {\bf tc\+\_\+init\+\_\+ddr} (volatile uint8\+\_\+t $\ast$D\+D\+R\+\_\+ptr, volatile uint8\+\_\+t $\ast$P\+O\+R\+T\+\_\+ptr, uint8\+\_\+t pin, volatile uint8\+\_\+t port\+\_\+value, volatile uint8\+\_\+t ddr\+\_\+value)
+\item 
+static void {\bf tc\+\_\+set\+\_\+com} (volatile uint8\+\_\+t $\ast$T\+C\+C\+R\+\_\+\+A\+\_\+ptr, uint8\+\_\+t channel, uint8\+\_\+t co\+\_\+mode)
+\item 
+static void {\bf tc\+\_\+set\+\_\+wgm} (volatile uint8\+\_\+t $\ast$T\+C\+C\+R\+\_\+\+A\+\_\+ptr, volatile uint8\+\_\+t $\ast$T\+C\+C\+R\+\_\+\+B\+\_\+ptr, uint8\+\_\+t wgm)
+\item 
+static void {\bf tc\+\_\+set\+\_\+prescaler} (volatile uint8\+\_\+t $\ast$T\+C\+C\+R\+\_\+\+B\+\_\+ptr, int prescaler)
+\item 
+static void {\bf increment\+\_\+tov\+\_\+cntr} (int enc\+\_\+id)
+\item 
+static void {\bf handle\+\_\+transition} (int enc\+\_\+id)
+\item 
+void {\bf motion\+\_\+init} (void)
+\item 
+void {\bf motion\+\_\+servo\+\_\+start} (int device\+Id)
+\item 
+void {\bf motion\+\_\+servo\+\_\+stop} (int device\+Id)
+\item 
+void {\bf motion\+\_\+servo\+\_\+set\+\_\+pulse\+\_\+width} (int device\+Id, uint16\+\_\+t pulse\+\_\+width\+\_\+cycles)
+\item 
+uint16\+\_\+t {\bf motion\+\_\+servo\+\_\+get\+\_\+pulse\+\_\+width} (int device\+Id)
+\item 
+int {\bf motion\+\_\+enc\+\_\+read} (int device\+Id, uint32\+\_\+t $\ast$val)
+\item 
+{\bf I\+SR} (T\+I\+M\+E\+R4\+\_\+\+O\+V\+F\+\_\+vect)
+\item 
+{\bf I\+SR} (T\+I\+M\+E\+R5\+\_\+\+O\+V\+F\+\_\+vect)
+\item 
+{\bf I\+SR} (T\+I\+M\+E\+R4\+\_\+\+C\+A\+P\+T\+\_\+vect)
+\item 
+{\bf I\+SR} (T\+I\+M\+E\+R5\+\_\+\+C\+A\+P\+T\+\_\+vect)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static volatile uint32\+\_\+t {\bf tov\+\_\+cntr} [{\bf E\+N\+C\+\_\+\+N\+U\+M\+B\+E\+R\+\_\+\+O\+F\+\_\+\+E\+N\+C\+O\+D\+E\+RS}]
+\item 
+static volatile uint16\+\_\+t {\bf last\+\_\+icr} [{\bf E\+N\+C\+\_\+\+N\+U\+M\+B\+E\+R\+\_\+\+O\+F\+\_\+\+E\+N\+C\+O\+D\+E\+RS}]
+\item 
+static volatile uint32\+\_\+t {\bf new\+\_\+data} [{\bf E\+N\+C\+\_\+\+N\+U\+M\+B\+E\+R\+\_\+\+O\+F\+\_\+\+E\+N\+C\+O\+D\+E\+RS}]
+\item 
+static volatile int {\bf new\+\_\+data\+\_\+available} [{\bf E\+N\+C\+\_\+\+N\+U\+M\+B\+E\+R\+\_\+\+O\+F\+\_\+\+E\+N\+C\+O\+D\+E\+RS}]
+\item 
+static const struct {\bf tc\+\_\+module\+\_\+registers} {\bf tc\+\_\+module\+\_\+s} [$\,$]
+\item 
+static const struct {\bf encoder\+\_\+config\+\_\+t} {\bf encoders} [$\,$]
+\item 
+static const struct {\bf motor\+\_\+registers\+\_\+s} {\bf motors} [$\,$]
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\index{motion.\+c@{motion.\+c}!E\+N\+C\+\_\+\+N\+U\+M\+B\+E\+R\+\_\+\+O\+F\+\_\+\+E\+N\+C\+O\+D\+E\+RS@{E\+N\+C\+\_\+\+N\+U\+M\+B\+E\+R\+\_\+\+O\+F\+\_\+\+E\+N\+C\+O\+D\+E\+RS}}
+\index{E\+N\+C\+\_\+\+N\+U\+M\+B\+E\+R\+\_\+\+O\+F\+\_\+\+E\+N\+C\+O\+D\+E\+RS@{E\+N\+C\+\_\+\+N\+U\+M\+B\+E\+R\+\_\+\+O\+F\+\_\+\+E\+N\+C\+O\+D\+E\+RS}!motion.\+c@{motion.\+c}}
+\subsubsection[{E\+N\+C\+\_\+\+N\+U\+M\+B\+E\+R\+\_\+\+O\+F\+\_\+\+E\+N\+C\+O\+D\+E\+RS}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\+N\+C\+\_\+\+N\+U\+M\+B\+E\+R\+\_\+\+O\+F\+\_\+\+E\+N\+C\+O\+D\+E\+RS~2}\label{motion_8c_a015d98796368c2aee787eb6b8faf17e9}
+\index{motion.\+c@{motion.\+c}!T\+C\+\_\+20\+\_\+\+M\+S\+\_\+\+P\+E\+R\+I\+O\+D\+\_\+\+A\+T\+\_\+\+P\+S\+\_\+8@{T\+C\+\_\+20\+\_\+\+M\+S\+\_\+\+P\+E\+R\+I\+O\+D\+\_\+\+A\+T\+\_\+\+P\+S\+\_\+8}}
+\index{T\+C\+\_\+20\+\_\+\+M\+S\+\_\+\+P\+E\+R\+I\+O\+D\+\_\+\+A\+T\+\_\+\+P\+S\+\_\+8@{T\+C\+\_\+20\+\_\+\+M\+S\+\_\+\+P\+E\+R\+I\+O\+D\+\_\+\+A\+T\+\_\+\+P\+S\+\_\+8}!motion.\+c@{motion.\+c}}
+\subsubsection[{T\+C\+\_\+20\+\_\+\+M\+S\+\_\+\+P\+E\+R\+I\+O\+D\+\_\+\+A\+T\+\_\+\+P\+S\+\_\+8}]{\setlength{\rightskip}{0pt plus 5cm}\#define T\+C\+\_\+20\+\_\+\+M\+S\+\_\+\+P\+E\+R\+I\+O\+D\+\_\+\+A\+T\+\_\+\+P\+S\+\_\+8~((uint16\+\_\+t) 39999)}\label{motion_8c_a35286dc03aa88c260439ad43b9977396}
+\index{motion.\+c@{motion.\+c}!T\+C\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+A@{T\+C\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+A}}
+\index{T\+C\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+A@{T\+C\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+A}!motion.\+c@{motion.\+c}}
+\subsubsection[{T\+C\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+A}]{\setlength{\rightskip}{0pt plus 5cm}\#define T\+C\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+A~0}\label{motion_8c_adae9b942e7dd30dbbab9b1bf72fdd62a}
+\index{motion.\+c@{motion.\+c}!T\+C\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+B@{T\+C\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+B}}
+\index{T\+C\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+B@{T\+C\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+B}!motion.\+c@{motion.\+c}}
+\subsubsection[{T\+C\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+B}]{\setlength{\rightskip}{0pt plus 5cm}\#define T\+C\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+B~1}\label{motion_8c_a99176ac6d1488b24f1d6fe111c8d6bab}
+\index{motion.\+c@{motion.\+c}!T\+C\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+C@{T\+C\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+C}}
+\index{T\+C\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+C@{T\+C\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+C}!motion.\+c@{motion.\+c}}
+\subsubsection[{T\+C\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+C}]{\setlength{\rightskip}{0pt plus 5cm}\#define T\+C\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+C~2}\label{motion_8c_a9260c2acf7737e87047f29f63caae343}
+\index{motion.\+c@{motion.\+c}!T\+C\+\_\+\+M\+O\+D\+U\+L\+E\+\_\+4@{T\+C\+\_\+\+M\+O\+D\+U\+L\+E\+\_\+4}}
+\index{T\+C\+\_\+\+M\+O\+D\+U\+L\+E\+\_\+4@{T\+C\+\_\+\+M\+O\+D\+U\+L\+E\+\_\+4}!motion.\+c@{motion.\+c}}
+\subsubsection[{T\+C\+\_\+\+M\+O\+D\+U\+L\+E\+\_\+4}]{\setlength{\rightskip}{0pt plus 5cm}\#define T\+C\+\_\+\+M\+O\+D\+U\+L\+E\+\_\+4~0}\label{motion_8c_a60335afd47bf73f5c82130f076e01d46}
+\index{motion.\+c@{motion.\+c}!T\+C\+\_\+\+M\+O\+D\+U\+L\+E\+\_\+5@{T\+C\+\_\+\+M\+O\+D\+U\+L\+E\+\_\+5}}
+\index{T\+C\+\_\+\+M\+O\+D\+U\+L\+E\+\_\+5@{T\+C\+\_\+\+M\+O\+D\+U\+L\+E\+\_\+5}!motion.\+c@{motion.\+c}}
+\subsubsection[{T\+C\+\_\+\+M\+O\+D\+U\+L\+E\+\_\+5}]{\setlength{\rightskip}{0pt plus 5cm}\#define T\+C\+\_\+\+M\+O\+D\+U\+L\+E\+\_\+5~1}\label{motion_8c_ad77ec029aa8bf1adc1cd271a856ff0ea}
+\index{motion.\+c@{motion.\+c}!T\+C\+\_\+\+O\+C\+M\+\_\+\+N\+O\+N\+\_\+\+I\+N\+V\+E\+R\+T\+ED@{T\+C\+\_\+\+O\+C\+M\+\_\+\+N\+O\+N\+\_\+\+I\+N\+V\+E\+R\+T\+ED}}
+\index{T\+C\+\_\+\+O\+C\+M\+\_\+\+N\+O\+N\+\_\+\+I\+N\+V\+E\+R\+T\+ED@{T\+C\+\_\+\+O\+C\+M\+\_\+\+N\+O\+N\+\_\+\+I\+N\+V\+E\+R\+T\+ED}!motion.\+c@{motion.\+c}}
+\subsubsection[{T\+C\+\_\+\+O\+C\+M\+\_\+\+N\+O\+N\+\_\+\+I\+N\+V\+E\+R\+T\+ED}]{\setlength{\rightskip}{0pt plus 5cm}\#define T\+C\+\_\+\+O\+C\+M\+\_\+\+N\+O\+N\+\_\+\+I\+N\+V\+E\+R\+T\+ED~((uint8\+\_\+t) 2)}\label{motion_8c_a6930450f9d4a6f117cecde035f5323d9}
+\index{motion.\+c@{motion.\+c}!T\+I\+F\+R\+\_\+\+I\+C\+F\+\_\+\+M\+A\+SK@{T\+I\+F\+R\+\_\+\+I\+C\+F\+\_\+\+M\+A\+SK}}
+\index{T\+I\+F\+R\+\_\+\+I\+C\+F\+\_\+\+M\+A\+SK@{T\+I\+F\+R\+\_\+\+I\+C\+F\+\_\+\+M\+A\+SK}!motion.\+c@{motion.\+c}}
+\subsubsection[{T\+I\+F\+R\+\_\+\+I\+C\+F\+\_\+\+M\+A\+SK}]{\setlength{\rightskip}{0pt plus 5cm}\#define T\+I\+F\+R\+\_\+\+I\+C\+F\+\_\+\+M\+A\+SK~((uint8\+\_\+t) 0b00100000)}\label{motion_8c_a722b7050d1ef6bba4a571f4db197fcf5}
+
+
+\subsection{Function Documentation}
+\index{motion.\+c@{motion.\+c}!enc\+\_\+init@{enc\+\_\+init}}
+\index{enc\+\_\+init@{enc\+\_\+init}!motion.\+c@{motion.\+c}}
+\subsubsection[{enc\+\_\+init(int device\+Id)}]{\setlength{\rightskip}{0pt plus 5cm}static void enc\+\_\+init (
+\begin{DoxyParamCaption}
+\item[{int}]{device\+Id}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}\label{motion_8c_a34c811ef2bd0189074d7b6f7400b0405}
+
+
+Here is the call graph for this function\+:
+% FIG 1
+
+
+\index{motion.\+c@{motion.\+c}!handle\+\_\+transition@{handle\+\_\+transition}}
+\index{handle\+\_\+transition@{handle\+\_\+transition}!motion.\+c@{motion.\+c}}
+\subsubsection[{handle\+\_\+transition(int enc\+\_\+id)}]{\setlength{\rightskip}{0pt plus 5cm}static void handle\+\_\+transition (
+\begin{DoxyParamCaption}
+\item[{int}]{enc\+\_\+id}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}\label{motion_8c_ad800a0278bf3d20079e323eed0a9826e}
+\index{motion.\+c@{motion.\+c}!increment\+\_\+tov\+\_\+cntr@{increment\+\_\+tov\+\_\+cntr}}
+\index{increment\+\_\+tov\+\_\+cntr@{increment\+\_\+tov\+\_\+cntr}!motion.\+c@{motion.\+c}}
+\subsubsection[{increment\+\_\+tov\+\_\+cntr(int enc\+\_\+id)}]{\setlength{\rightskip}{0pt plus 5cm}static void increment\+\_\+tov\+\_\+cntr (
+\begin{DoxyParamCaption}
+\item[{int}]{enc\+\_\+id}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}\label{motion_8c_a458442d1afccdedc2e4c6e120e8a9ab3}
+\index{motion.\+c@{motion.\+c}!I\+SR@{I\+SR}}
+\index{I\+SR@{I\+SR}!motion.\+c@{motion.\+c}}
+\subsubsection[{I\+S\+R(\+T\+I\+M\+E\+R4\+\_\+\+O\+V\+F\+\_\+vect)}]{\setlength{\rightskip}{0pt plus 5cm}I\+SR (
+\begin{DoxyParamCaption}
+\item[{T\+I\+M\+E\+R4\+\_\+\+O\+V\+F\+\_\+vect}]{}
+\end{DoxyParamCaption}
+)}\label{motion_8c_a33c40fdd48fd7bb540f034e5c489a38b}
+
+
+Here is the call graph for this function\+:
+% FIG 2
+
+
+\index{motion.\+c@{motion.\+c}!I\+SR@{I\+SR}}
+\index{I\+SR@{I\+SR}!motion.\+c@{motion.\+c}}
+\subsubsection[{I\+S\+R(\+T\+I\+M\+E\+R5\+\_\+\+O\+V\+F\+\_\+vect)}]{\setlength{\rightskip}{0pt plus 5cm}I\+SR (
+\begin{DoxyParamCaption}
+\item[{T\+I\+M\+E\+R5\+\_\+\+O\+V\+F\+\_\+vect}]{}
+\end{DoxyParamCaption}
+)}\label{motion_8c_a4ecf85c13d47309a0b3b3a39721432ae}
+
+
+Here is the call graph for this function\+:
+% FIG 3
+
+
+\index{motion.\+c@{motion.\+c}!I\+SR@{I\+SR}}
+\index{I\+SR@{I\+SR}!motion.\+c@{motion.\+c}}
+\subsubsection[{I\+S\+R(\+T\+I\+M\+E\+R4\+\_\+\+C\+A\+P\+T\+\_\+vect)}]{\setlength{\rightskip}{0pt plus 5cm}I\+SR (
+\begin{DoxyParamCaption}
+\item[{T\+I\+M\+E\+R4\+\_\+\+C\+A\+P\+T\+\_\+vect}]{}
+\end{DoxyParamCaption}
+)}\label{motion_8c_a14f2b572356b14f26890f2cc4ea204d9}
+
+
+Here is the call graph for this function\+:
+% FIG 4
+
+
+\index{motion.\+c@{motion.\+c}!I\+SR@{I\+SR}}
+\index{I\+SR@{I\+SR}!motion.\+c@{motion.\+c}}
+\subsubsection[{I\+S\+R(\+T\+I\+M\+E\+R5\+\_\+\+C\+A\+P\+T\+\_\+vect)}]{\setlength{\rightskip}{0pt plus 5cm}I\+SR (
+\begin{DoxyParamCaption}
+\item[{T\+I\+M\+E\+R5\+\_\+\+C\+A\+P\+T\+\_\+vect}]{}
+\end{DoxyParamCaption}
+)}\label{motion_8c_a44d54a727cca8ed124f4b3b6a45425f4}
+
+
+Here is the call graph for this function\+:
+% FIG 5
+
+
+\index{motion.\+c@{motion.\+c}!motion\+\_\+enc\+\_\+read@{motion\+\_\+enc\+\_\+read}}
+\index{motion\+\_\+enc\+\_\+read@{motion\+\_\+enc\+\_\+read}!motion.\+c@{motion.\+c}}
+\subsubsection[{motion\+\_\+enc\+\_\+read(int device\+Id, uint32\+\_\+t $\ast$val)}]{\setlength{\rightskip}{0pt plus 5cm}int motion\+\_\+enc\+\_\+read (
+\begin{DoxyParamCaption}
+\item[{int}]{device\+Id, }
+\item[{uint32\+\_\+t $\ast$}]{val}
+\end{DoxyParamCaption}
+)}\label{motion_8c_a783cb0180b4d2cd1979b20892e97a8e4}
+\index{motion.\+c@{motion.\+c}!motion\+\_\+init@{motion\+\_\+init}}
+\index{motion\+\_\+init@{motion\+\_\+init}!motion.\+c@{motion.\+c}}
+\subsubsection[{motion\+\_\+init(void)}]{\setlength{\rightskip}{0pt plus 5cm}void motion\+\_\+init (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\label{motion_8c_ac9be894f7310341b63a2edbffb8c1564}
+
+
+Here is the call graph for this function\+:
+% FIG 6
+
+
+\index{motion.\+c@{motion.\+c}!motion\+\_\+servo\+\_\+get\+\_\+pulse\+\_\+width@{motion\+\_\+servo\+\_\+get\+\_\+pulse\+\_\+width}}
+\index{motion\+\_\+servo\+\_\+get\+\_\+pulse\+\_\+width@{motion\+\_\+servo\+\_\+get\+\_\+pulse\+\_\+width}!motion.\+c@{motion.\+c}}
+\subsubsection[{motion\+\_\+servo\+\_\+get\+\_\+pulse\+\_\+width(int device\+Id)}]{\setlength{\rightskip}{0pt plus 5cm}uint16\+\_\+t motion\+\_\+servo\+\_\+get\+\_\+pulse\+\_\+width (
+\begin{DoxyParamCaption}
+\item[{int}]{device\+Id}
+\end{DoxyParamCaption}
+)}\label{motion_8c_a564983d228c5d86527fa79fb4cbeb24a}
+\index{motion.\+c@{motion.\+c}!motion\+\_\+servo\+\_\+set\+\_\+pulse\+\_\+width@{motion\+\_\+servo\+\_\+set\+\_\+pulse\+\_\+width}}
+\index{motion\+\_\+servo\+\_\+set\+\_\+pulse\+\_\+width@{motion\+\_\+servo\+\_\+set\+\_\+pulse\+\_\+width}!motion.\+c@{motion.\+c}}
+\subsubsection[{motion\+\_\+servo\+\_\+set\+\_\+pulse\+\_\+width(int device\+Id, uint16\+\_\+t pulse\+\_\+width\+\_\+cycles)}]{\setlength{\rightskip}{0pt plus 5cm}void motion\+\_\+servo\+\_\+set\+\_\+pulse\+\_\+width (
+\begin{DoxyParamCaption}
+\item[{int}]{device\+Id, }
+\item[{uint16\+\_\+t}]{pulse\+\_\+width\+\_\+cycles}
+\end{DoxyParamCaption}
+)}\label{motion_8c_a5afda449073815c408f11d7ce3c5ecbc}
+\index{motion.\+c@{motion.\+c}!motion\+\_\+servo\+\_\+start@{motion\+\_\+servo\+\_\+start}}
+\index{motion\+\_\+servo\+\_\+start@{motion\+\_\+servo\+\_\+start}!motion.\+c@{motion.\+c}}
+\subsubsection[{motion\+\_\+servo\+\_\+start(int device\+Id)}]{\setlength{\rightskip}{0pt plus 5cm}void motion\+\_\+servo\+\_\+start (
+\begin{DoxyParamCaption}
+\item[{int}]{device\+Id}
+\end{DoxyParamCaption}
+)}\label{motion_8c_aa2c96c678bd9bdcdc4b934cea7abfaa4}
+
+
+Here is the call graph for this function\+:
+% FIG 7
+
+
+\index{motion.\+c@{motion.\+c}!motion\+\_\+servo\+\_\+stop@{motion\+\_\+servo\+\_\+stop}}
+\index{motion\+\_\+servo\+\_\+stop@{motion\+\_\+servo\+\_\+stop}!motion.\+c@{motion.\+c}}
+\subsubsection[{motion\+\_\+servo\+\_\+stop(int device\+Id)}]{\setlength{\rightskip}{0pt plus 5cm}void motion\+\_\+servo\+\_\+stop (
+\begin{DoxyParamCaption}
+\item[{int}]{device\+Id}
+\end{DoxyParamCaption}
+)}\label{motion_8c_a299aca644308117ebfdb3d784943c035}
+
+
+Here is the call graph for this function\+:
+% FIG 8
+
+
+\index{motion.\+c@{motion.\+c}!tc\+\_\+init@{tc\+\_\+init}}
+\index{tc\+\_\+init@{tc\+\_\+init}!motion.\+c@{motion.\+c}}
+\subsubsection[{tc\+\_\+init(int tc\+Module)}]{\setlength{\rightskip}{0pt plus 5cm}static void tc\+\_\+init (
+\begin{DoxyParamCaption}
+\item[{int}]{tc\+Module}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}\label{motion_8c_a8d12206f4cd9015696507368434d085d}
+
+
+Here is the call graph for this function\+:
+% FIG 9
+
+
+\index{motion.\+c@{motion.\+c}!tc\+\_\+init\+\_\+ddr@{tc\+\_\+init\+\_\+ddr}}
+\index{tc\+\_\+init\+\_\+ddr@{tc\+\_\+init\+\_\+ddr}!motion.\+c@{motion.\+c}}
+\subsubsection[{tc\+\_\+init\+\_\+ddr(volatile uint8\+\_\+t $\ast$\+D\+D\+R\+\_\+ptr, volatile uint8\+\_\+t $\ast$\+P\+O\+R\+T\+\_\+ptr, uint8\+\_\+t pin, volatile uint8\+\_\+t port\+\_\+value, volatile uint8\+\_\+t ddr\+\_\+value)}]{\setlength{\rightskip}{0pt plus 5cm}static void tc\+\_\+init\+\_\+ddr (
+\begin{DoxyParamCaption}
+\item[{volatile uint8\+\_\+t $\ast$}]{D\+D\+R\+\_\+ptr, }
+\item[{volatile uint8\+\_\+t $\ast$}]{P\+O\+R\+T\+\_\+ptr, }
+\item[{uint8\+\_\+t}]{pin, }
+\item[{volatile uint8\+\_\+t}]{port\+\_\+value, }
+\item[{volatile uint8\+\_\+t}]{ddr\+\_\+value}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}\label{motion_8c_a7f15fab5cfcd9e36ebba263ec9ae367f}
+\index{motion.\+c@{motion.\+c}!tc\+\_\+set\+\_\+com@{tc\+\_\+set\+\_\+com}}
+\index{tc\+\_\+set\+\_\+com@{tc\+\_\+set\+\_\+com}!motion.\+c@{motion.\+c}}
+\subsubsection[{tc\+\_\+set\+\_\+com(volatile uint8\+\_\+t $\ast$\+T\+C\+C\+R\+\_\+\+A\+\_\+ptr, uint8\+\_\+t channel, uint8\+\_\+t co\+\_\+mode)}]{\setlength{\rightskip}{0pt plus 5cm}static void tc\+\_\+set\+\_\+com (
+\begin{DoxyParamCaption}
+\item[{volatile uint8\+\_\+t $\ast$}]{T\+C\+C\+R\+\_\+\+A\+\_\+ptr, }
+\item[{uint8\+\_\+t}]{channel, }
+\item[{uint8\+\_\+t}]{co\+\_\+mode}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}\label{motion_8c_a9f32f315fc317b73745364bb8cb52eeb}
+\index{motion.\+c@{motion.\+c}!tc\+\_\+set\+\_\+prescaler@{tc\+\_\+set\+\_\+prescaler}}
+\index{tc\+\_\+set\+\_\+prescaler@{tc\+\_\+set\+\_\+prescaler}!motion.\+c@{motion.\+c}}
+\subsubsection[{tc\+\_\+set\+\_\+prescaler(volatile uint8\+\_\+t $\ast$\+T\+C\+C\+R\+\_\+\+B\+\_\+ptr, int prescaler)}]{\setlength{\rightskip}{0pt plus 5cm}static void tc\+\_\+set\+\_\+prescaler (
+\begin{DoxyParamCaption}
+\item[{volatile uint8\+\_\+t $\ast$}]{T\+C\+C\+R\+\_\+\+B\+\_\+ptr, }
+\item[{int}]{prescaler}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}\label{motion_8c_a164e3f5907dd956fea4b055a34f201be}
+\index{motion.\+c@{motion.\+c}!tc\+\_\+set\+\_\+wgm@{tc\+\_\+set\+\_\+wgm}}
+\index{tc\+\_\+set\+\_\+wgm@{tc\+\_\+set\+\_\+wgm}!motion.\+c@{motion.\+c}}
+\subsubsection[{tc\+\_\+set\+\_\+wgm(volatile uint8\+\_\+t $\ast$\+T\+C\+C\+R\+\_\+\+A\+\_\+ptr, volatile uint8\+\_\+t $\ast$\+T\+C\+C\+R\+\_\+\+B\+\_\+ptr, uint8\+\_\+t wgm)}]{\setlength{\rightskip}{0pt plus 5cm}static void tc\+\_\+set\+\_\+wgm (
+\begin{DoxyParamCaption}
+\item[{volatile uint8\+\_\+t $\ast$}]{T\+C\+C\+R\+\_\+\+A\+\_\+ptr, }
+\item[{volatile uint8\+\_\+t $\ast$}]{T\+C\+C\+R\+\_\+\+B\+\_\+ptr, }
+\item[{uint8\+\_\+t}]{wgm}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}\label{motion_8c_aa01b75872b4bf75e3716336faf262d8e}
+
+
+\subsection{Variable Documentation}
+\index{motion.\+c@{motion.\+c}!encoders@{encoders}}
+\index{encoders@{encoders}!motion.\+c@{motion.\+c}}
+\subsubsection[{encoders}]{\setlength{\rightskip}{0pt plus 5cm}const struct {\bf encoder\+\_\+config\+\_\+t} encoders[$\,$]\hspace{0.3cm}{\ttfamily [static]}}\label{motion_8c_ab54e9edf33c8902ef09b0cbbd2cfb415}
+{\bfseries Initial value\+:}
+\begin{DoxyCode}
+=
+\{
+    \{   
+        
+        PORT_ptr:   &PORTL,
+        DDR_ptr:    &DDRL,
+        pin:        0,
+        tc_p:       &tc_module_s[TC_MODULE_4]
+    \},
+    \{   
+        
+        PORT_ptr:   &PORTL,
+        DDR_ptr:    &DDRL,
+        pin:        1,
+        tc_p:       &tc_module_s[TC_MODULE_5]
+    \}
+\}
+\end{DoxyCode}
+\index{motion.\+c@{motion.\+c}!last\+\_\+icr@{last\+\_\+icr}}
+\index{last\+\_\+icr@{last\+\_\+icr}!motion.\+c@{motion.\+c}}
+\subsubsection[{last\+\_\+icr}]{\setlength{\rightskip}{0pt plus 5cm}volatile uint16\+\_\+t last\+\_\+icr[{\bf E\+N\+C\+\_\+\+N\+U\+M\+B\+E\+R\+\_\+\+O\+F\+\_\+\+E\+N\+C\+O\+D\+E\+RS}]\hspace{0.3cm}{\ttfamily [static]}}\label{motion_8c_af7d11c64d22fba3335328da703a0d8f7}
+\index{motion.\+c@{motion.\+c}!motors@{motors}}
+\index{motors@{motors}!motion.\+c@{motion.\+c}}
+\subsubsection[{motors}]{\setlength{\rightskip}{0pt plus 5cm}const struct {\bf motor\+\_\+registers\+\_\+s} motors[$\,$]\hspace{0.3cm}{\ttfamily [static]}}\label{motion_8c_a007234beb28514edab2e9b8538441a66}
+{\bfseries Initial value\+:}
+\begin{DoxyCode}
+=
+\{
+    \{   
+        OCR_ptr:    &OCR5B,
+        DDR_ptr:    &DDRL,
+        PORT_ptr:   &PORTL,
+        pin:        4,
+        channel:    TC_CHANNEL_B,
+        tc_p:       &tc_module_s[TC_MODULE_5]
+    \},
+    \{   
+        OCR_ptr:    &OCR4C,
+        DDR_ptr:    &DDRH,
+        PORT_ptr:   &PORTH,
+        pin:        5,
+        channel:    TC_CHANNEL_C,
+        tc_p:       &tc_module_s[TC_MODULE_4]
+    \},
+    \{   
+        OCR_ptr:    &OCR4B,
+        DDR_ptr:    &DDRH,
+        PORT_ptr:   &PORTH,
+        pin:        4,
+        channel:    TC_CHANNEL_B,
+        tc_p:       &tc_module_s[TC_MODULE_4]
+    \}
+\}
+\end{DoxyCode}
+\index{motion.\+c@{motion.\+c}!new\+\_\+data@{new\+\_\+data}}
+\index{new\+\_\+data@{new\+\_\+data}!motion.\+c@{motion.\+c}}
+\subsubsection[{new\+\_\+data}]{\setlength{\rightskip}{0pt plus 5cm}volatile uint32\+\_\+t new\+\_\+data[{\bf E\+N\+C\+\_\+\+N\+U\+M\+B\+E\+R\+\_\+\+O\+F\+\_\+\+E\+N\+C\+O\+D\+E\+RS}]\hspace{0.3cm}{\ttfamily [static]}}\label{motion_8c_a4179ea552e3b15fe63c41656b7abefdd}
+\index{motion.\+c@{motion.\+c}!new\+\_\+data\+\_\+available@{new\+\_\+data\+\_\+available}}
+\index{new\+\_\+data\+\_\+available@{new\+\_\+data\+\_\+available}!motion.\+c@{motion.\+c}}
+\subsubsection[{new\+\_\+data\+\_\+available}]{\setlength{\rightskip}{0pt plus 5cm}volatile int new\+\_\+data\+\_\+available[{\bf E\+N\+C\+\_\+\+N\+U\+M\+B\+E\+R\+\_\+\+O\+F\+\_\+\+E\+N\+C\+O\+D\+E\+RS}]\hspace{0.3cm}{\ttfamily [static]}}\label{motion_8c_a4a8fe84ed65d3237dd67b73a89f1d38f}
+\index{motion.\+c@{motion.\+c}!tc\+\_\+module\+\_\+s@{tc\+\_\+module\+\_\+s}}
+\index{tc\+\_\+module\+\_\+s@{tc\+\_\+module\+\_\+s}!motion.\+c@{motion.\+c}}
+\subsubsection[{tc\+\_\+module\+\_\+s}]{\setlength{\rightskip}{0pt plus 5cm}const struct {\bf tc\+\_\+module\+\_\+registers} tc\+\_\+module\+\_\+s[$\,$]\hspace{0.3cm}{\ttfamily [static]}}\label{motion_8c_a101346195b0251159ede2cd50a20f04a}
+{\bfseries Initial value\+:}
+\begin{DoxyCode}
+=
+\{
+    
+
+    \{   
+        TIFR\_ptr:    &TIFR4,
+        TCNT\_ptr:    &TCNT4,
+        ICR\_ptr:     &ICR4,
+        TOP\_value\_p: &OCR4A,
+        TCCR\_A\_ptr:  &TCCR4A,
+        TCCR\_B\_ptr:  &TCCR4B,
+        prescale:    8,
+        wgm\_mode:    ((uint8\_t) 15),
+        TIMSK\_ptr:   &TIMSK4,
+    \},
+    \{   
+        TIFR\_ptr:    &TIFR5,
+        TCNT\_ptr:    &TCNT5,
+        ICR\_ptr:     &ICR5,
+        TOP\_value\_p: &OCR5A,
+        TCCR\_A\_ptr:  &TCCR5A,
+        TCCR\_B\_ptr:  &TCCR5B,
+        prescale:    8,
+        wgm\_mode:    ((uint8\_t) 15),
+        TIMSK\_ptr:   &TIMSK5,
+    \}
+\}
+\end{DoxyCode}
+\index{motion.\+c@{motion.\+c}!tov\+\_\+cntr@{tov\+\_\+cntr}}
+\index{tov\+\_\+cntr@{tov\+\_\+cntr}!motion.\+c@{motion.\+c}}
+\subsubsection[{tov\+\_\+cntr}]{\setlength{\rightskip}{0pt plus 5cm}volatile uint32\+\_\+t tov\+\_\+cntr[{\bf E\+N\+C\+\_\+\+N\+U\+M\+B\+E\+R\+\_\+\+O\+F\+\_\+\+E\+N\+C\+O\+D\+E\+RS}]\hspace{0.3cm}{\ttfamily [static]}}\label{motion_8c_a13e9b849ffe7bd025190fa97cc4856ce}

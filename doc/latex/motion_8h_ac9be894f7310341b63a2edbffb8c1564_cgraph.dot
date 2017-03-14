@@ -1,0 +1,19 @@
+digraph "motion_init"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="motion_init",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid"];
+  Node2 [label="tc_init",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$motion_8c.html#a8d12206f4cd9015696507368434d085d"];
+  Node2 -> Node3 [color="midnightblue",fontsize="10",style="solid"];
+  Node3 [label="tc_set_com",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$motion_8c.html#a9f32f315fc317b73745364bb8cb52eeb"];
+  Node2 -> Node4 [color="midnightblue",fontsize="10",style="solid"];
+  Node4 [label="tc_set_wgm",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$motion_8c.html#aa01b75872b4bf75e3716336faf262d8e"];
+  Node2 -> Node5 [color="midnightblue",fontsize="10",style="solid"];
+  Node5 [label="tc_set_prescaler",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$motion_8c.html#a164e3f5907dd956fea4b055a34f201be"];
+  Node1 -> Node6 [color="midnightblue",fontsize="10",style="solid"];
+  Node6 [label="enc_init",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$motion_8c.html#a34c811ef2bd0189074d7b6f7400b0405"];
+  Node6 -> Node7 [color="midnightblue",fontsize="10",style="solid"];
+  Node7 [label="tc_init_ddr",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$motion_8c.html#a7f15fab5cfcd9e36ebba263ec9ae367f"];
+}
