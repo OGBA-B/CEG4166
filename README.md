@@ -6,4 +6,4 @@ CEG4166- Real Time systems Project- Chico
 
 • Followed a SCRUM development process with programming, documentation, and team management
 
-partial demo: https://streamable.com/zqduy
+partial demo:https://streamable.com/zqduy
